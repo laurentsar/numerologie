@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#120a1f" />
+  <title>Numérologie</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="img/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-logo">🔢</span>
+      <div>
+        <h1>Numérologie <span id="verChip" class="ver-chip"></span></h1>
+        <p class="sub">Thème numérologique — méthode pythagoricienne</p>
+      </div>
+    </div>
+    <button id="newProfil" class="icon-btn" title="Nouveau thème">➕</button>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="theme">🔮 Thème</button>
+    <button class="tab" data-tab="cycles">📅 Cycles</button>
+    <button class="tab" data-tab="grille">🔠 Grille</button>
+    <button class="tab" data-tab="accord">💞 Accord</button>
+    <button class="tab" data-tab="infos">ℹ️ Infos</button>
+  </nav>
+
+  <!-- ============================== THÈME =============================== -->
+  <section id="tab-theme" class="tab-panel active">
+    <div class="form-card">
+      <label class="field">
+        <span>Prénom(s) de naissance</span>
+        <input id="inPrenoms" type="text" autocomplete="off" placeholder="Jean-Pierre Marie" />
+      </label>
+      <label class="field">
+        <span>Nom de naissance</span>
+        <input id="inNom" type="text" autocomplete="off" placeholder="Dupont" />
+      </label>
+      <label class="field">
+        <span>Date de naissance</span>
+        <input id="inDate" type="date" />
+      </label>
+      <p class="hint">Les noms de l'<b>acte de naissance</b>, tous les prénoms, sans nom d'usage ni surnom.</p>
+      <div class="form-actions">
+        <button id="calcBtn" class="primary">Calculer le thème</button>
+        <button id="saveBtn" class="ghost">💾 Enregistrer</button>
+      </div>
+    </div>
+
+    <div id="profilChips" class="chips"></div>
+
+    <div id="themeOut" class="hidden">
+      <div class="hero">
+        <div class="hero-num" id="heroNum">—</div>
+        <div class="hero-txt">
+          <div class="hero-label">Chemin de vie</div>
+          <div class="hero-title" id="heroTitre"></div>
+          <div class="hero-keys" id="heroCles"></div>
+        </div>
+      </div>
+      <p class="hero-body" id="heroTexte"></p>
+
+      <h2>Les nombres du nom</h2>
+      <div id="nombresNom" class="num-grid"></div>
+
+      <h2>Aujourd'hui</h2>
+      <div id="nombresJour" class="num-grid"></div>
+    </div>
+  </section>
+
+  <!-- ============================== CYCLES ============================== -->
+  <section id="tab-cycles" class="tab-panel">
+    <p class="empty" id="cyclesEmpty">Calcule d'abord un thème dans l'onglet <b>🔮 Thème</b>.</p>
+    <div id="cyclesOut" class="hidden">
+      <h2>Année personnelle</h2>
+      <div id="anneeCard"></div>
+      <h2>Cycles de vie</h2>
+      <div id="cyclesList" class="periodes"></div>
+      <h2>Réalisations</h2>
+      <div id="realisList" class="periodes"></div>
+      <h2>Défis</h2>
+      <div id="defisList" class="periodes"></div>
+    </div>
+  </section>
+
+  <!-- ============================== GRILLE ============================== -->
+  <section id="tab-grille" class="tab-panel">
+    <p class="empty" id="grilleEmpty">Calcule d'abord un thème dans l'onglet <b>🔮 Thème</b>.</p>
+    <div id="grilleOut" class="hidden">
+      <h2>Grille d'inclusion</h2>
+      <p class="muted">Combien de fois chaque chiffre apparaît dans ton nom complet.</p>
+      <div id="grilleTable" class="grille"></div>
+      <div id="grilleTextes"></div>
+      <h2>Détail des lettres</h2>
+      <div id="lettresOut" class="lettres"></div>
+    </div>
+  </section>
+
+  <!-- ============================== ACCORD ============================== -->
+  <section id="tab-accord" class="tab-panel">
+    <h2>Accord entre deux thèmes</h2>
+    <p class="muted">Compare deux profils enregistrés.</p>
+    <div class="form-card">
+      <label class="field"><span>Première personne</span><select id="accordA"></select></label>
+      <label class="field"><span>Seconde personne</span><select id="accordB"></select></label>
+      <div class="form-actions"><button id="accordBtn" class="primary">Comparer</button></div>
+    </div>
+    <div id="accordOut"></div>
+  </section>
+
+  <!-- =============================== INFOS ============================== -->
+  <section id="tab-infos" class="tab-panel">
+    <div class="notice">
+      <b>À lire.</b> La numérologie est une pratique symbolique, pas une science :
+      aucune de ses correspondances n'est établie par la recherche. Cette app
+      calcule fidèlement, elle ne prédit rien. À prendre comme une grille de
+      lecture et un support de réflexion, jamais comme une base de décision
+      médicale, financière ou juridique.
+    </div>
+
+    <h2>Table pythagoricienne</h2>
+    <div id="tableLettres" class="table-lettres"></div>
+
+    <h2>Méthode retenue</h2>
+    <ul class="method">
+      <li><b>Chemin de vie</b> — jour, mois et année réduits séparément, puis additionnés et réduits.</li>
+      <li><b>Nombres maîtres</b> — 11, 22 et 33 sont conservés, jamais réduits.</li>
+      <li><b>Expression</b> — toutes les lettres du nom complet de naissance.</li>
+      <li><b>Intime</b> — les voyelles. <b>Réalisation</b> — les consonnes.</li>
+      <li><b>Le Y</b> — compte comme voyelle sauf quand il touche une autre voyelle.</li>
+      <li><b>Défis</b> — écarts absolus ; 0 est une valeur à part entière, pas une absence de résultat.</li>
+    </ul>
+
+    <h2>Origine</h2>
+    <p class="muted">Grille de lecture inspirée de la numérologie occidentale
+    pythagoricienne dans sa tradition française. Les textes d'interprétation sont
+    originaux et modifiables dans <code>interpretations.js</code>.</p>
+
+    <h2>Sauvegarde</h2>
+    <div id="backup-panel"></div>
+  </section>
+
+  <script>
+    window.UPDATE_REPO = 'laurentsar/numerologie';
+    window.APP_VERSION = '1.0';
+  </script>
+  <script src="numerologie.js"></script>
+  <script src="interpretations.js"></script>
+  <script src="app.js"></script>
+  <script src="update-check.js"></script>
+  <script>window.BACKUP_APP = 'numerologie';</script>
+  <script src="autobackup.js"></script>
+  <script>AutoBackup.mount(document.getElementById('backup-panel'));</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Numérologie</string>
+    <string name="title_activity_main">Numérologie</string>
+    <string name="package_name">com.laurent.numerologie</string>
+    <string name="custom_url_scheme">com.laurent.numerologie</string>
+</resources>
