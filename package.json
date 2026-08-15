@@ -1,6 +1,6 @@
 {
   "name": "numerologie",
-  "version": "1.0",
+  "version": "1.1",
   "private": true,
   "description": "Thème numérologique complet (méthode pythagoricienne) : chemin de vie, nombres du nom, cycles de vie, réalisations, défis, grille d'inclusion (PWA + APK, 100% hors ligne)",
   "scripts": { "sync": "cap sync android", "open": "cap open android" },

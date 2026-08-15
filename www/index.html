@@ -26,6 +26,7 @@
     <button class="tab" data-tab="cycles">📅 Cycles</button>
     <button class="tab" data-tab="grille">🔠 Grille</button>
     <button class="tab" data-tab="accord">💞 Accord</button>
+    <button class="tab" data-tab="tirage">🎴 Tirage</button>
     <button class="tab" data-tab="infos">ℹ️ Infos</button>
   </nav>
 
@@ -112,6 +113,23 @@
     <div id="accordOut"></div>
   </section>
 
+  <!-- =============================== TIRAGE ============================== -->
+  <section id="tab-tirage" class="tab-panel">
+    <h2>Tirage de cartes</h2>
+    <p class="muted">Tarot symbolique, tirage aleatoire local. Choisis un jeu de positions, puis tire les cartes.</p>
+    <div class="form-card">
+      <label class="field">
+        <span>Type de tirage</span>
+        <select id="tirageSpread"></select>
+      </label>
+      <p class="hint" id="tirageDesc"></p>
+      <div class="form-actions">
+        <button id="tirageBtn" class="primary">🎴 Tirer les cartes</button>
+      </div>
+    </div>
+    <div id="tirageOut" class="periodes" style="margin-top:14px"></div>
+  </section>
+
   <!-- =============================== INFOS ============================== -->
   <section id="tab-infos" class="tab-panel">
     <div class="notice">
@@ -146,10 +164,11 @@
 
   <script>
     window.UPDATE_REPO = 'laurentsar/numerologie';
-    window.APP_VERSION = '1.0';
+    window.APP_VERSION = '1.1';
   </script>
   <script src="numerologie.js"></script>
   <script src="interpretations.js"></script>
+  <script src="tarot.js"></script>
   <script src="app.js"></script>
   <script src="update-check.js"></script>
   <script>window.BACKUP_APP = 'numerologie';</script>

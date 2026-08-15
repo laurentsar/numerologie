@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  var N = window.Numero, I = window.Interpretations;
+  var N = window.Numero, I = window.Interpretations, T = window.Tarot;
   var KEY = 'numeroProfils';
   var KEY_ACTIF = 'numeroProfilActif';
 
@@ -266,6 +266,34 @@
       ligne('Nombre intime', ta.intime, tb.intime);
   }
 
+  // ----------------------------- tirage -------------------------------------
+  function initTirage() {
+    var s = $('tirageSpread');
+    s.innerHTML = T.spreads.map(function (sp) {
+      return '<option value="' + sp.id + '">' + esc(sp.nom) + ' (' + sp.positions.length + ' cartes)</option>';
+    }).join('');
+    s.addEventListener('change', majDescTirage);
+    majDescTirage();
+  }
+
+  function majDescTirage() {
+    var sp = T.spreads.filter(function (x) { return x.id === $('tirageSpread').value; })[0];
+    $('tirageDesc').textContent = sp ? sp.positions.join(' · ') : '';
+  }
+
+  function tirerCartes() {
+    var res = T.tirer($('tirageSpread').value);
+    if (!res) return;
+    $('tirageOut').innerHTML = res.tirage.map(function (t, i) {
+      return '<div class="periode">' +
+        '<div class="per-num">' + (i + 1) + '</div>' +
+        '<div><div class="per-head">' + esc(t.position) + '</div>' +
+        '<div class="per-age">' + esc(t.carte.nom) + ' — ' + esc(t.carte.famille) + '</div>' +
+        '<div class="per-txt">' + esc(t.carte.motsCles) + '</div></div></div>';
+    }).join('');
+    window.scrollTo(0, 0);
+  }
+
   // ----------------------------- infos -------------------------------------
   function rendreTableLettres() {
     var cols = {};
@@ -282,12 +310,14 @@
   function init() {
     initTabs();
     rendreTableLettres();
+    initTirage();
     chargerProfils();
     $('verChip').textContent = 'v' + window.APP_VERSION;
 
     $('calcBtn').addEventListener('click', calculer);
     $('saveBtn').addEventListener('click', function () { enregistrer(); calculer(); });
     $('accordBtn').addEventListener('click', comparer);
+    $('tirageBtn').addEventListener('click', tirerCartes);
     $('newProfil').addEventListener('click', function () {
       $('inPrenoms').value = ''; $('inNom').value = ''; $('inDate').value = '';
       $('themeOut').classList.add('hidden');

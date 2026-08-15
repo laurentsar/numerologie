@@ -30,6 +30,11 @@ et dominantes.
 
 **Accord** — comparaison de deux profils enregistrés.
 
+**Tirage de cartes** — tarot symbolique : 9 tirages (croix celtique modifiée,
+guides spirituels, dynamique relationnelle, bilan du jour, etc.), pioche
+aléatoire dans un jeu de 78 cartes (arcanes majeurs et mineurs) avec mots-clés
+pour chaque carte.
+
 ## Méthode
 
 Numérologie occidentale pythagoricienne, tradition française.
@@ -67,6 +72,7 @@ manque, l'app retombe automatiquement sur le nombre réduit (11 → 2, 22 → 4,
 ```
 www/numerologie.js     moteur de calcul, aucune interprétation, aucune dépendance
 www/interpretations.js tous les textes, remplaçables
+www/tarot.js           jeu de 78 cartes + tirages (positions), remplaçable
 www/app.js             interface, ne calcule rien
 www/sw.js              service worker (app shell en cache, fonctionne hors ligne)
 tools_gen_icon.py      génère les icônes PWA + launcher Android (pur Python)
