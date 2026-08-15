@@ -159,19 +159,19 @@
       '<div class="num-card">' + badge(t.actif) +
         '<div class="num-body"><div class="num-name">Nombre actif — ' + esc(I.titres[t.actif] || '') + '</div>' +
         '<div class="num-sub">prénom(s) seuls</div>' +
-        '<div class="num-txt">Ce que porte votre prénom, la part de vous la plus immédiatement perçue.</div></div></div>' +
+        '<div class="num-txt">' + esc(I.get('actif', t.actif)) + '</div></div></div>' +
       '<div class="num-card">' + badge(t.hereditaire) +
         '<div class="num-body"><div class="num-name">Nombre héréditaire — ' + esc(I.titres[t.hereditaire] || '') + '</div>' +
         '<div class="num-sub">nom de famille seul</div>' +
-        '<div class="num-txt">L\'héritage familial, ce que la lignée transmet sans le dire.</div></div></div>' +
+        '<div class="num-txt">' + esc(I.get('hereditaire', t.hereditaire)) + '</div></div></div>' +
       '<div class="num-card">' + badge(t.equilibre) +
         '<div class="num-body"><div class="num-name">Nombre d\'équilibre — ' + esc(I.titres[t.equilibre] || '') + '</div>' +
         '<div class="num-sub">initiales</div>' +
-        '<div class="num-txt">La ressource sur laquelle vous vous appuyez dans les moments difficiles.</div></div></div>' +
+        '<div class="num-txt">' + esc(I.get('equilibre', t.equilibre)) + '</div></div></div>' +
       '<div class="num-card">' + badge(t.jourNaissance) +
         '<div class="num-body"><div class="num-name">Jour de naissance — ' + esc(I.titres[t.jourNaissance] || '') + '</div>' +
         '<div class="num-sub">jour ' + t.etatCivil.date.jour + '</div>' +
-        '<div class="num-txt">' + esc(I.get('essence', t.jourNaissance)) + '</div></div></div>';
+        '<div class="num-txt">' + esc(I.get('talent', t.jourNaissance)) + '</div></div></div>';
 
     // --- aujourd'hui
     $('nombresJour').innerHTML =
@@ -276,7 +276,13 @@
         '<div class="num-txt">' + esc(s.qualite) + '</div></div></div>' +
       '<div class="num-card"><div class="num-badge">' + s.symbole + '</div>' +
         '<div class="num-body"><div class="num-name">Planète maîtresse</div>' +
-        '<div class="num-txt">' + esc(s.planete) + '</div></div></div>';
+        '<div class="num-txt">' + esc(s.planete) + '</div></div></div>' +
+      '<div class="num-card"><div class="num-badge">' + s.symbole + '</div>' +
+        '<div class="num-body"><div class="num-name">En amour</div>' +
+        '<div class="num-txt">' + esc(s.amour) + '</div></div></div>' +
+      '<div class="num-card"><div class="num-badge">' + s.symbole + '</div>' +
+        '<div class="num-body"><div class="num-name">Au travail</div>' +
+        '<div class="num-txt">' + esc(s.travail) + '</div></div></div>';
 
     $('astroCompat').textContent = A.compatibles(s).join(' · ');
   }
@@ -339,7 +345,8 @@
         '<div class="per-num">' + (i + 1) + '</div>' +
         '<div><div class="per-head">' + esc(t.position) + '</div>' +
         '<div class="per-age">' + esc(t.carte.nom) + ' — ' + esc(t.carte.famille) + '</div>' +
-        '<div class="per-txt">' + esc(t.carte.motsCles) + '</div></div></div>';
+        '<div class="num-sub">' + esc(t.carte.motsCles) + '</div>' +
+        '<div class="per-txt">' + esc(t.carte.texte) + '</div></div></div>';
     }).join('');
     window.scrollTo(0, 0);
     sauverTirage(res);
