@@ -1,7 +1,7 @@
 /* Numérologie — service worker. L'app est 100 % locale : tout l'app shell est
    caché, aucun appel réseau n'est nécessaire au fonctionnement. Seul le contrôle
    de mise à jour (api.github.com) doit passer par le réseau. */
-const CACHE = 'numerologie-v1.1';
+const CACHE = 'numerologie-v1.2';
 const SHELL = [
   'index.html', 'styles.css', 'app.js',
   'numerologie.js', 'interpretations.js', 'tarot.js',
