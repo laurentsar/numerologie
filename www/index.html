@@ -25,6 +25,7 @@
     <button class="tab active" data-tab="theme">🔮 Thème</button>
     <button class="tab" data-tab="cycles">📅 Cycles</button>
     <button class="tab" data-tab="grille">🔠 Grille</button>
+    <button class="tab" data-tab="astro">♈ Astro</button>
     <button class="tab" data-tab="accord">💞 Accord</button>
     <button class="tab" data-tab="tirage">🎴 Tirage</button>
     <button class="tab" data-tab="infos">ℹ️ Infos</button>
@@ -101,6 +102,26 @@
     </div>
   </section>
 
+  <!-- =============================== ASTRO ================================ -->
+  <section id="tab-astro" class="tab-panel">
+    <p class="empty" id="astroEmpty">Calcule d'abord un thème dans l'onglet <b>🔮 Thème</b>.</p>
+    <div id="astroOut" class="hidden">
+      <div class="hero">
+        <div class="hero-num astro-symbole" id="astroSymbole">—</div>
+        <div class="hero-txt">
+          <div class="hero-label">Signe solaire</div>
+          <div class="hero-title" id="astroNom"></div>
+          <div class="hero-keys" id="astroCles"></div>
+        </div>
+      </div>
+      <p class="hero-body" id="astroTexte"></p>
+      <div id="astroDetail" class="num-grid" style="margin-top:10px"></div>
+      <h2>Signes compatibles</h2>
+      <p class="muted" id="astroCompat"></p>
+      <p class="hint">Signe solaire calculé à partir du jour et du mois de naissance uniquement (zodiaque tropical). Pas d'heure ni de lieu de naissance : ce n'est pas un thème astral complet.</p>
+    </div>
+  </section>
+
   <!-- ============================== ACCORD ============================== -->
   <section id="tab-accord" class="tab-panel">
     <h2>Accord entre deux thèmes</h2>
@@ -173,6 +194,7 @@
   <script src="numerologie.js"></script>
   <script src="interpretations.js"></script>
   <script src="tarot.js"></script>
+  <script src="astro.js"></script>
   <script src="app.js"></script>
   <script src="update-check.js"></script>
   <script>window.BACKUP_APP = 'numerologie';</script>

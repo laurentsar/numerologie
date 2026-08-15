@@ -33,7 +33,12 @@ et dominantes.
 **Tirage de cartes** — tarot symbolique : 9 tirages (croix celtique modifiée,
 guides spirituels, dynamique relationnelle, bilan du jour, etc.), pioche
 aléatoire dans un jeu de 78 cartes (arcanes majeurs et mineurs) avec mots-clés
-pour chaque carte.
+pour chaque carte. Historique des tirages conservé en local.
+
+**Astro** — signe solaire (zodiaque tropical occidental) calculé à partir du
+jour et du mois de naissance : élément, qualité, planète maîtresse,
+mots-clés et signes compatibles. Pas d'heure ni de lieu de naissance : ce
+n'est pas un thème astral complet.
 
 ## Méthode
 
@@ -73,6 +78,7 @@ manque, l'app retombe automatiquement sur le nombre réduit (11 → 2, 22 → 4,
 www/numerologie.js     moteur de calcul, aucune interprétation, aucune dépendance
 www/interpretations.js tous les textes, remplaçables
 www/tarot.js           jeu de 78 cartes + tirages (positions), remplaçable
+www/astro.js           signes du zodiaque (dates, textes), remplaçable
 www/app.js             interface, ne calcule rien
 www/sw.js              service worker (app shell en cache, fonctionne hors ligne)
 tools_gen_icon.py      génère les icônes PWA + launcher Android (pur Python)

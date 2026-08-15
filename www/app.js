@@ -6,7 +6,7 @@
 (function () {
   'use strict';
 
-  var N = window.Numero, I = window.Interpretations, T = window.Tarot;
+  var N = window.Numero, I = window.Interpretations, T = window.Tarot, A = window.Astro;
   var KEY = 'numeroProfils';
   var KEY_ACTIF = 'numeroProfilActif';
   var KEY_TIRAGES = 'numeroTirages';
@@ -168,6 +168,7 @@
     $('themeOut').classList.remove('hidden');
     rendreCycles(t);
     rendreGrille(t);
+    rendreAstro(t);
   }
 
   // ----------------------------- cycles ------------------------------------
@@ -232,6 +233,34 @@
     $('lettresOut').innerHTML = t.lettres.map(function (l) {
       return '<div class="lt' + (l.voyelle ? ' voy' : '') + '"><b>' + l.lettre + '</b><span>' + l.valeur + '</span></div>';
     }).join('');
+  }
+
+  // ------------------------------ astro -------------------------------------
+  function rendreAstro(t) {
+    var d = t.etatCivil.date;
+    var s = A.getSigne(d.jour, d.mois);
+    if (!s) return;
+
+    $('astroEmpty').classList.add('hidden');
+    $('astroOut').classList.remove('hidden');
+
+    $('astroSymbole').textContent = s.symbole;
+    $('astroNom').textContent = s.nom;
+    $('astroCles').textContent = s.motsCles;
+    $('astroTexte').textContent = s.texte;
+
+    $('astroDetail').innerHTML =
+      '<div class="num-card"><div class="num-badge">' + s.symbole + '</div>' +
+        '<div class="num-body"><div class="num-name">Élément</div>' +
+        '<div class="num-txt">' + esc(s.element) + '</div></div></div>' +
+      '<div class="num-card"><div class="num-badge">' + s.symbole + '</div>' +
+        '<div class="num-body"><div class="num-name">Qualité</div>' +
+        '<div class="num-txt">' + esc(s.qualite) + '</div></div></div>' +
+      '<div class="num-card"><div class="num-badge">' + s.symbole + '</div>' +
+        '<div class="num-body"><div class="num-name">Planète maîtresse</div>' +
+        '<div class="num-txt">' + esc(s.planete) + '</div></div></div>';
+
+    $('astroCompat').textContent = A.compatibles(s).join(' · ');
   }
 
   // ----------------------------- accord ------------------------------------

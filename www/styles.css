@@ -30,9 +30,11 @@ code{background:var(--card);padding:1px 5px;border-radius:5px;font-size:12px}
 .icon-btn:active{transform:scale(.94)}
 
 .tabs{display:flex;gap:5px;padding:10px 10px;position:sticky;top:69px;z-index:15;
-  background:var(--bg);border-bottom:1px solid var(--line)}
-.tab{flex:1;background:transparent;border:1px solid var(--line);color:var(--muted);
-  padding:9px 2px;border-radius:11px;font-size:12px;font-weight:600;cursor:pointer;
+  background:var(--bg);border-bottom:1px solid var(--line);
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:transparent;border:1px solid var(--line);color:var(--muted);
+  padding:9px 12px;border-radius:11px;font-size:12px;font-weight:600;cursor:pointer;
   white-space:nowrap;line-height:1.2}
 .tab.active{background:var(--card2);color:var(--txt);border-color:var(--accent)}
 

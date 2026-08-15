@@ -4,7 +4,7 @@
 const CACHE = 'numerologie-v1.3';
 const SHELL = [
   'index.html', 'styles.css', 'app.js',
-  'numerologie.js', 'interpretations.js', 'tarot.js',
+  'numerologie.js', 'interpretations.js', 'tarot.js', 'astro.js',
   'update-check.js', 'autobackup.js',
   'manifest.webmanifest', 'img/icon-192.png', 'img/icon-512.png',
 ];
