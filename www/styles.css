@@ -25,9 +25,27 @@ code{background:var(--card);padding:1px 5px;border-radius:5px;font-size:12px}
 .sub{margin:2px 0 0;color:var(--muted);font-size:12px}
 .ver-chip{font-size:11px;font-weight:700;color:#f3dfa3;background:rgba(224,178,60,.15);
   border:1px solid #6b5220;border-radius:8px;padding:1px 6px;vertical-align:middle}
+.header-actions{display:flex;gap:8px}
 .icon-btn{background:var(--card2);border:1px solid var(--line);color:var(--txt);
   width:44px;height:44px;border-radius:12px;font-size:20px;cursor:pointer}
 .icon-btn:active{transform:scale(.94)}
+
+/* -------------------------- écrans / accueil ----------------------------- */
+.screen{display:none}
+.screen.active{display:block}
+.screen-body{padding:12px 12px 0}
+.back-btn{display:block;margin:12px 12px 0;background:transparent;border:1px solid var(--line);
+  color:var(--muted);border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.back-btn:active{transform:scale(.97)}
+
+.theme-picker{display:flex;flex-direction:column;gap:12px;padding:20px 16px}
+.theme-card{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;
+  background:linear-gradient(135deg,#2a1a4d,#1d1136);border:1px solid var(--line);border-radius:16px;
+  padding:18px 20px;color:var(--txt);cursor:pointer;font-family:inherit}
+.theme-card:active{transform:scale(.98);border-color:var(--accent)}
+.theme-icon{font-size:32px;filter:drop-shadow(0 0 10px rgba(224,178,60,.35))}
+.theme-name{font-size:17px;font-weight:800;margin-top:6px}
+.theme-desc{font-size:12.5px;color:var(--muted)}
 
 .tabs{display:flex;gap:5px;padding:10px 10px;position:sticky;top:69px;z-index:15;
   background:var(--bg);border-bottom:1px solid var(--line);

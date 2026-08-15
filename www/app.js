@@ -31,6 +31,24 @@
     try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* quota */ }
   }
 
+  // ----------------------------- écrans -------------------------------------
+  function showScreen(nom) {
+    document.querySelectorAll('.screen').forEach(function (s) {
+      s.classList.toggle('active', s.id === 'screen-' + nom);
+    });
+    window.scrollTo(0, 0);
+  }
+
+  function initEcrans() {
+    document.querySelectorAll('.theme-card').forEach(function (b) {
+      b.addEventListener('click', function () { showScreen(b.dataset.screen); });
+    });
+    document.querySelectorAll('[data-back]').forEach(function (b) {
+      b.addEventListener('click', function () { showScreen('home'); });
+    });
+    $('infosBtn').addEventListener('click', function () { showScreen('infos'); });
+  }
+
   // ----------------------------- onglets -----------------------------------
   function initTabs() {
     document.querySelectorAll('.tab').forEach(function (b) {
@@ -401,6 +419,7 @@
 
   // ----------------------------- init --------------------------------------
   function init() {
+    initEcrans();
     initTabs();
     rendreTableLettres();
     initTirage();
@@ -416,6 +435,7 @@
     $('newProfil').addEventListener('click', function () {
       $('inPrenoms').value = ''; $('inNom').value = ''; $('inDate').value = '';
       $('themeOut').classList.add('hidden');
+      showScreen('numerologie');
       $('inPrenoms').focus();
     });
 

@@ -18,173 +18,207 @@
         <p class="sub">Thème numérologique — méthode pythagoricienne</p>
       </div>
     </div>
-    <button id="newProfil" class="icon-btn" title="Nouveau thème">➕</button>
+    <div class="header-actions">
+      <button id="infosBtn" class="icon-btn" title="Infos">ℹ️</button>
+      <button id="newProfil" class="icon-btn" title="Nouveau thème">➕</button>
+    </div>
   </header>
 
-  <nav class="tabs">
-    <button class="tab active" data-tab="theme">🔮 Thème</button>
-    <button class="tab" data-tab="cycles">📅 Cycles</button>
-    <button class="tab" data-tab="grille">🔠 Grille</button>
-    <button class="tab" data-tab="astro">♈ Astro</button>
-    <button class="tab" data-tab="accord">💞 Accord</button>
-    <button class="tab" data-tab="tirage">🎴 Tirage</button>
-    <button class="tab" data-tab="infos">ℹ️ Infos</button>
-  </nav>
-
-  <!-- ============================== THÈME =============================== -->
-  <section id="tab-theme" class="tab-panel active">
-    <div class="form-card">
-      <label class="field">
-        <span>Prénom(s) de naissance</span>
-        <input id="inPrenoms" type="text" autocomplete="off" placeholder="Jean-Pierre Marie" />
-      </label>
-      <label class="field">
-        <span>Nom de naissance</span>
-        <input id="inNom" type="text" autocomplete="off" placeholder="Dupont" />
-      </label>
-      <label class="field">
-        <span>Date de naissance</span>
-        <input id="inDate" type="date" />
-      </label>
-      <p class="hint">Les noms de l'<b>acte de naissance</b>, tous les prénoms, sans nom d'usage ni surnom.</p>
-      <div class="form-actions">
-        <button id="calcBtn" class="primary">Calculer le thème</button>
-        <button id="saveBtn" class="ghost">💾 Enregistrer</button>
-      </div>
+  <!-- ============================== ACCUEIL =============================== -->
+  <section id="screen-home" class="screen active">
+    <div class="theme-picker">
+      <button class="theme-card" data-screen="numerologie">
+        <span class="theme-icon">🔮</span>
+        <span class="theme-name">Numérologie</span>
+        <span class="theme-desc">Thème, cycles, grille d'inclusion, accord entre deux profils</span>
+      </button>
+      <button class="theme-card" data-screen="tirage">
+        <span class="theme-icon">🎴</span>
+        <span class="theme-name">Tirage de cartes</span>
+        <span class="theme-desc">Tarot symbolique, 9 tirages, historique</span>
+      </button>
+      <button class="theme-card" data-screen="astro">
+        <span class="theme-icon">♈</span>
+        <span class="theme-name">Astro</span>
+        <span class="theme-desc">Signe solaire, élément, planète, compatibilités</span>
+      </button>
     </div>
+  </section>
 
-    <div id="profilChips" class="chips"></div>
+  <!-- ============================ NUMÉROLOGIE ============================= -->
+  <section id="screen-numerologie" class="screen">
+    <button class="back-btn" data-back>← Thèmes</button>
+    <nav class="tabs">
+      <button class="tab active" data-tab="theme">🔮 Thème</button>
+      <button class="tab" data-tab="cycles">📅 Cycles</button>
+      <button class="tab" data-tab="grille">🔠 Grille</button>
+      <button class="tab" data-tab="accord">💞 Accord</button>
+    </nav>
 
-    <div id="themeOut" class="hidden">
-      <div class="hero">
-        <div class="hero-num" id="heroNum">—</div>
-        <div class="hero-txt">
-          <div class="hero-label">Chemin de vie</div>
-          <div class="hero-title" id="heroTitre"></div>
-          <div class="hero-keys" id="heroCles"></div>
+    <!-- ------------------------------ THÈME -------------------------------- -->
+    <section id="tab-theme" class="tab-panel active">
+      <div class="form-card">
+        <label class="field">
+          <span>Prénom(s) de naissance</span>
+          <input id="inPrenoms" type="text" autocomplete="off" placeholder="Jean-Pierre Marie" />
+        </label>
+        <label class="field">
+          <span>Nom de naissance</span>
+          <input id="inNom" type="text" autocomplete="off" placeholder="Dupont" />
+        </label>
+        <label class="field">
+          <span>Date de naissance</span>
+          <input id="inDate" type="date" />
+        </label>
+        <p class="hint">Les noms de l'<b>acte de naissance</b>, tous les prénoms, sans nom d'usage ni surnom.</p>
+        <div class="form-actions">
+          <button id="calcBtn" class="primary">Calculer le thème</button>
+          <button id="saveBtn" class="ghost">💾 Enregistrer</button>
         </div>
       </div>
-      <p class="hero-body" id="heroTexte"></p>
 
-      <h2>Les nombres du nom</h2>
-      <div id="nombresNom" class="num-grid"></div>
+      <div id="profilChips" class="chips"></div>
 
-      <h2>Aujourd'hui</h2>
-      <div id="nombresJour" class="num-grid"></div>
-    </div>
+      <div id="themeOut" class="hidden">
+        <div class="hero">
+          <div class="hero-num" id="heroNum">—</div>
+          <div class="hero-txt">
+            <div class="hero-label">Chemin de vie</div>
+            <div class="hero-title" id="heroTitre"></div>
+            <div class="hero-keys" id="heroCles"></div>
+          </div>
+        </div>
+        <p class="hero-body" id="heroTexte"></p>
+
+        <h2>Les nombres du nom</h2>
+        <div id="nombresNom" class="num-grid"></div>
+
+        <h2>Aujourd'hui</h2>
+        <div id="nombresJour" class="num-grid"></div>
+      </div>
+    </section>
+
+    <!-- ------------------------------ CYCLES ------------------------------- -->
+    <section id="tab-cycles" class="tab-panel">
+      <p class="empty" id="cyclesEmpty">Calcule d'abord un thème dans l'onglet <b>🔮 Thème</b>.</p>
+      <div id="cyclesOut" class="hidden">
+        <h2>Année personnelle</h2>
+        <div id="anneeCard"></div>
+        <h2>Cycles de vie</h2>
+        <div id="cyclesList" class="periodes"></div>
+        <h2>Réalisations</h2>
+        <div id="realisList" class="periodes"></div>
+        <h2>Défis</h2>
+        <div id="defisList" class="periodes"></div>
+      </div>
+    </section>
+
+    <!-- ------------------------------ GRILLE ------------------------------- -->
+    <section id="tab-grille" class="tab-panel">
+      <p class="empty" id="grilleEmpty">Calcule d'abord un thème dans l'onglet <b>🔮 Thème</b>.</p>
+      <div id="grilleOut" class="hidden">
+        <h2>Grille d'inclusion</h2>
+        <p class="muted">Combien de fois chaque chiffre apparaît dans ton nom complet.</p>
+        <div id="grilleTable" class="grille"></div>
+        <div id="grilleTextes"></div>
+        <h2>Détail des lettres</h2>
+        <div id="lettresOut" class="lettres"></div>
+      </div>
+    </section>
+
+    <!-- ------------------------------ ACCORD ------------------------------- -->
+    <section id="tab-accord" class="tab-panel">
+      <h2>Accord entre deux thèmes</h2>
+      <p class="muted">Compare deux profils enregistrés.</p>
+      <div class="form-card">
+        <label class="field"><span>Première personne</span><select id="accordA"></select></label>
+        <label class="field"><span>Seconde personne</span><select id="accordB"></select></label>
+        <div class="form-actions"><button id="accordBtn" class="primary">Comparer</button></div>
+      </div>
+      <div id="accordOut"></div>
+    </section>
   </section>
 
-  <!-- ============================== CYCLES ============================== -->
-  <section id="tab-cycles" class="tab-panel">
-    <p class="empty" id="cyclesEmpty">Calcule d'abord un thème dans l'onglet <b>🔮 Thème</b>.</p>
-    <div id="cyclesOut" class="hidden">
-      <h2>Année personnelle</h2>
-      <div id="anneeCard"></div>
-      <h2>Cycles de vie</h2>
-      <div id="cyclesList" class="periodes"></div>
-      <h2>Réalisations</h2>
-      <div id="realisList" class="periodes"></div>
-      <h2>Défis</h2>
-      <div id="defisList" class="periodes"></div>
-    </div>
-  </section>
-
-  <!-- ============================== GRILLE ============================== -->
-  <section id="tab-grille" class="tab-panel">
-    <p class="empty" id="grilleEmpty">Calcule d'abord un thème dans l'onglet <b>🔮 Thème</b>.</p>
-    <div id="grilleOut" class="hidden">
-      <h2>Grille d'inclusion</h2>
-      <p class="muted">Combien de fois chaque chiffre apparaît dans ton nom complet.</p>
-      <div id="grilleTable" class="grille"></div>
-      <div id="grilleTextes"></div>
-      <h2>Détail des lettres</h2>
-      <div id="lettresOut" class="lettres"></div>
-    </div>
-  </section>
-
-  <!-- =============================== ASTRO ================================ -->
-  <section id="tab-astro" class="tab-panel">
-    <p class="empty" id="astroEmpty">Calcule d'abord un thème dans l'onglet <b>🔮 Thème</b>.</p>
-    <div id="astroOut" class="hidden">
-      <div class="hero">
-        <div class="hero-num astro-symbole" id="astroSymbole">—</div>
-        <div class="hero-txt">
-          <div class="hero-label">Signe solaire</div>
-          <div class="hero-title" id="astroNom"></div>
-          <div class="hero-keys" id="astroCles"></div>
+  <!-- =============================== TIRAGE ================================ -->
+  <section id="screen-tirage" class="screen">
+    <button class="back-btn" data-back>← Thèmes</button>
+    <div class="screen-body">
+      <h2>Tirage de cartes</h2>
+      <p class="muted">Tarot symbolique, tirage aléatoire local. Choisis un jeu de positions, puis tire les cartes.</p>
+      <div class="form-card">
+        <label class="field">
+          <span>Type de tirage</span>
+          <select id="tirageSpread"></select>
+        </label>
+        <p class="hint" id="tirageDesc"></p>
+        <div class="form-actions">
+          <button id="tirageBtn" class="primary">🎴 Tirer les cartes</button>
         </div>
       </div>
-      <p class="hero-body" id="astroTexte"></p>
-      <div id="astroDetail" class="num-grid" style="margin-top:10px"></div>
-      <h2>Signes compatibles</h2>
-      <p class="muted" id="astroCompat"></p>
-      <p class="hint">Signe solaire calculé à partir du jour et du mois de naissance uniquement (zodiaque tropical). Pas d'heure ni de lieu de naissance : ce n'est pas un thème astral complet.</p>
+      <div id="tirageOut" class="periodes" style="margin-top:14px"></div>
+
+      <h2>Historique</h2>
+      <div class="form-actions"><button id="tirageHistClear" class="ghost">🗑️ Effacer l'historique</button></div>
+      <div id="tirageHistorique" class="hist-list"></div>
     </div>
   </section>
 
-  <!-- ============================== ACCORD ============================== -->
-  <section id="tab-accord" class="tab-panel">
-    <h2>Accord entre deux thèmes</h2>
-    <p class="muted">Compare deux profils enregistrés.</p>
-    <div class="form-card">
-      <label class="field"><span>Première personne</span><select id="accordA"></select></label>
-      <label class="field"><span>Seconde personne</span><select id="accordB"></select></label>
-      <div class="form-actions"><button id="accordBtn" class="primary">Comparer</button></div>
-    </div>
-    <div id="accordOut"></div>
-  </section>
-
-  <!-- =============================== TIRAGE ============================== -->
-  <section id="tab-tirage" class="tab-panel">
-    <h2>Tirage de cartes</h2>
-    <p class="muted">Tarot symbolique, tirage aleatoire local. Choisis un jeu de positions, puis tire les cartes.</p>
-    <div class="form-card">
-      <label class="field">
-        <span>Type de tirage</span>
-        <select id="tirageSpread"></select>
-      </label>
-      <p class="hint" id="tirageDesc"></p>
-      <div class="form-actions">
-        <button id="tirageBtn" class="primary">🎴 Tirer les cartes</button>
+  <!-- ================================ ASTRO ================================= -->
+  <section id="screen-astro" class="screen">
+    <button class="back-btn" data-back>← Thèmes</button>
+    <div class="screen-body">
+      <p class="empty" id="astroEmpty">Calcule d'abord un thème dans l'onglet <b>🔮 Numérologie</b>.</p>
+      <div id="astroOut" class="hidden">
+        <div class="hero">
+          <div class="hero-num astro-symbole" id="astroSymbole">—</div>
+          <div class="hero-txt">
+            <div class="hero-label">Signe solaire</div>
+            <div class="hero-title" id="astroNom"></div>
+            <div class="hero-keys" id="astroCles"></div>
+          </div>
+        </div>
+        <p class="hero-body" id="astroTexte"></p>
+        <div id="astroDetail" class="num-grid" style="margin-top:10px"></div>
+        <h2>Signes compatibles</h2>
+        <p class="muted" id="astroCompat"></p>
+        <p class="hint">Signe solaire calculé à partir du jour et du mois de naissance uniquement (zodiaque tropical). Pas d'heure ni de lieu de naissance : ce n'est pas un thème astral complet.</p>
       </div>
     </div>
-    <div id="tirageOut" class="periodes" style="margin-top:14px"></div>
-
-    <h2>Historique</h2>
-    <div class="form-actions"><button id="tirageHistClear" class="ghost">🗑️ Effacer l'historique</button></div>
-    <div id="tirageHistorique" class="hist-list"></div>
   </section>
 
-  <!-- =============================== INFOS ============================== -->
-  <section id="tab-infos" class="tab-panel">
-    <div class="notice">
-      <b>À lire.</b> La numérologie est une pratique symbolique, pas une science :
-      aucune de ses correspondances n'est établie par la recherche. Cette app
-      calcule fidèlement, elle ne prédit rien. À prendre comme une grille de
-      lecture et un support de réflexion, jamais comme une base de décision
-      médicale, financière ou juridique.
+  <!-- ================================ INFOS ================================= -->
+  <section id="screen-infos" class="screen">
+    <button class="back-btn" data-back>← Thèmes</button>
+    <div class="screen-body">
+      <div class="notice">
+        <b>À lire.</b> La numérologie est une pratique symbolique, pas une science :
+        aucune de ses correspondances n'est établie par la recherche. Cette app
+        calcule fidèlement, elle ne prédit rien. À prendre comme une grille de
+        lecture et un support de réflexion, jamais comme une base de décision
+        médicale, financière ou juridique.
+      </div>
+
+      <h2>Table pythagoricienne</h2>
+      <div id="tableLettres" class="table-lettres"></div>
+
+      <h2>Méthode retenue</h2>
+      <ul class="method">
+        <li><b>Chemin de vie</b> — jour, mois et année réduits séparément, puis additionnés et réduits.</li>
+        <li><b>Nombres maîtres</b> — 11, 22 et 33 sont conservés, jamais réduits.</li>
+        <li><b>Expression</b> — toutes les lettres du nom complet de naissance.</li>
+        <li><b>Intime</b> — les voyelles. <b>Réalisation</b> — les consonnes.</li>
+        <li><b>Le Y</b> — compte comme voyelle sauf quand il touche une autre voyelle.</li>
+        <li><b>Défis</b> — écarts absolus ; 0 est une valeur à part entière, pas une absence de résultat.</li>
+      </ul>
+
+      <h2>Origine</h2>
+      <p class="muted">Grille de lecture inspirée de la numérologie occidentale
+      pythagoricienne dans sa tradition française. Les textes d'interprétation sont
+      originaux et modifiables dans <code>interpretations.js</code>.</p>
+
+      <h2>Sauvegarde</h2>
+      <div id="backup-panel"></div>
     </div>
-
-    <h2>Table pythagoricienne</h2>
-    <div id="tableLettres" class="table-lettres"></div>
-
-    <h2>Méthode retenue</h2>
-    <ul class="method">
-      <li><b>Chemin de vie</b> — jour, mois et année réduits séparément, puis additionnés et réduits.</li>
-      <li><b>Nombres maîtres</b> — 11, 22 et 33 sont conservés, jamais réduits.</li>
-      <li><b>Expression</b> — toutes les lettres du nom complet de naissance.</li>
-      <li><b>Intime</b> — les voyelles. <b>Réalisation</b> — les consonnes.</li>
-      <li><b>Le Y</b> — compte comme voyelle sauf quand il touche une autre voyelle.</li>
-      <li><b>Défis</b> — écarts absolus ; 0 est une valeur à part entière, pas une absence de résultat.</li>
-    </ul>
-
-    <h2>Origine</h2>
-    <p class="muted">Grille de lecture inspirée de la numérologie occidentale
-    pythagoricienne dans sa tradition française. Les textes d'interprétation sont
-    originaux et modifiables dans <code>interpretations.js</code>.</p>
-
-    <h2>Sauvegarde</h2>
-    <div id="backup-panel"></div>
   </section>
 
   <script>
