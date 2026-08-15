@@ -9,9 +9,12 @@
   var N = window.Numero, I = window.Interpretations, T = window.Tarot;
   var KEY = 'numeroProfils';
   var KEY_ACTIF = 'numeroProfilActif';
+  var KEY_TIRAGES = 'numeroTirages';
+  var MAX_HISTORIQUE = 30;
 
   var profils = [];
   var themeCourant = null;
+  var historiqueTirages = [];
 
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) {
@@ -292,6 +295,67 @@
         '<div class="per-txt">' + esc(t.carte.motsCles) + '</div></div></div>';
     }).join('');
     window.scrollTo(0, 0);
+    sauverTirage(res);
+  }
+
+  // ------------------------- historique des tirages -------------------------
+  function chargerHistoriqueTirages() {
+    historiqueTirages = lsGet(KEY_TIRAGES, []);
+    rendreHistoriqueTirages();
+  }
+
+  function sauverTirage(res) {
+    historiqueTirages.unshift({
+      date: new Date().toISOString(),
+      spread: res.spread.nom,
+      cartes: res.tirage.map(function (t) {
+        return { position: t.position, nom: t.carte.nom, famille: t.carte.famille };
+      })
+    });
+    if (historiqueTirages.length > MAX_HISTORIQUE) historiqueTirages.length = MAX_HISTORIQUE;
+    lsSet(KEY_TIRAGES, historiqueTirages);
+    rendreHistoriqueTirages();
+  }
+
+  function formatDateTirage(iso) {
+    var d = new Date(iso);
+    return d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
+      ' à ' + d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function rendreHistoriqueTirages() {
+    var box = $('tirageHistorique');
+    if (!historiqueTirages.length) {
+      box.innerHTML = '<p class="muted">Aucun tirage enregistré pour l\'instant.</p>';
+      return;
+    }
+    box.innerHTML = historiqueTirages.map(function (h, i) {
+      return '<div class="hist-card">' +
+        '<div class="hist-head"><div><b>' + esc(h.spread) + '</b>' +
+        '<div class="hist-date">' + esc(formatDateTirage(h.date)) + '</div></div>' +
+        '<b class="x" data-del="' + i + '">×</b></div>' +
+        '<div class="hist-cartes">' + h.cartes.map(function (c) {
+          return '<div class="hist-ligne"><span class="hist-pos">' + esc(c.position) + '</span> — ' + esc(c.nom) + '</div>';
+        }).join('') +
+        '</div></div>';
+    }).join('');
+    box.querySelectorAll('.x').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var i = +btn.dataset.del;
+        if (!confirm('Supprimer ce tirage de l\'historique ?')) return;
+        historiqueTirages.splice(i, 1);
+        lsSet(KEY_TIRAGES, historiqueTirages);
+        rendreHistoriqueTirages();
+      });
+    });
+  }
+
+  function effacerHistoriqueTirages() {
+    if (!historiqueTirages.length) return;
+    if (!confirm('Effacer tout l\'historique des tirages ?')) return;
+    historiqueTirages = [];
+    lsSet(KEY_TIRAGES, []);
+    rendreHistoriqueTirages();
   }
 
   // ----------------------------- infos -------------------------------------
@@ -311,6 +375,7 @@
     initTabs();
     rendreTableLettres();
     initTirage();
+    chargerHistoriqueTirages();
     chargerProfils();
     $('verChip').textContent = 'v' + window.APP_VERSION;
 
@@ -318,6 +383,7 @@
     $('saveBtn').addEventListener('click', function () { enregistrer(); calculer(); });
     $('accordBtn').addEventListener('click', comparer);
     $('tirageBtn').addEventListener('click', tirerCartes);
+    $('tirageHistClear').addEventListener('click', effacerHistoriqueTirages);
     $('newProfil').addEventListener('click', function () {
       $('inPrenoms').value = ''; $('inNom').value = ''; $('inDate').value = '';
       $('themeOut').classList.add('hidden');

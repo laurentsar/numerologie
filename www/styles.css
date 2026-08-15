@@ -132,3 +132,14 @@ button.ghost{background:transparent;border:1px solid var(--line);color:var(--mut
   padding:14px;margin-top:12px}
 .accord-niv{font-size:19px;font-weight:800;margin-bottom:6px}
 .niv-fluide{color:#7ee2a8}.niv-nuance{color:var(--accent)}.niv-exigeant{color:#f0a3a3}
+
+/* ------------------------- historique des tirages ------------------------ */
+.hist-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.hist-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:11px 13px}
+.hist-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.hist-head b{font-size:13.5px}
+.hist-date{font-size:11.5px;color:var(--muted);margin-top:1px}
+.hist-head .x{color:var(--muted);font-weight:700;cursor:pointer;flex-shrink:0;padding:0 2px}
+.hist-cartes{margin-top:6px;font-size:12.5px;color:#ddd4ee}
+.hist-ligne{padding:2px 0}
+.hist-pos{color:var(--accent2)}
