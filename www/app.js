@@ -288,7 +288,7 @@
     var res = T.tirer($('tirageSpread').value);
     if (!res) return;
     $('tirageOut').innerHTML = res.tirage.map(function (t, i) {
-      return '<div class="periode">' +
+      return '<div class="periode carte-sortie" style="animation-delay:' + (i * 140) + 'ms">' +
         '<div class="per-num">' + (i + 1) + '</div>' +
         '<div><div class="per-head">' + esc(t.position) + '</div>' +
         '<div class="per-age">' + esc(t.carte.nom) + ' — ' + esc(t.carte.famille) + '</div>' +

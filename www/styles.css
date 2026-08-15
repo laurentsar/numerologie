@@ -133,6 +133,19 @@ button.ghost{background:transparent;border:1px solid var(--line);color:var(--mut
 .accord-niv{font-size:19px;font-weight:800;margin-bottom:6px}
 .niv-fluide{color:#7ee2a8}.niv-nuance{color:var(--accent)}.niv-exigeant{color:#f0a3a3}
 
+/* ---------------------------- tirage : animation ------------------------- */
+.carte-sortie{opacity:0;animation:carteSortie .55s cubic-bezier(.2,.7,.3,1) both}
+@keyframes carteSortie{
+  0%{opacity:0;transform:perspective(700px) rotateY(-100deg) scale(.85);
+     box-shadow:0 0 0 rgba(224,178,60,0)}
+  55%{opacity:1;box-shadow:0 0 20px rgba(224,178,60,.4)}
+  100%{opacity:1;transform:perspective(700px) rotateY(0) scale(1);
+       box-shadow:0 0 0 rgba(224,178,60,0)}
+}
+@media (prefers-reduced-motion: reduce){
+  .carte-sortie{animation-duration:.01ms;animation-delay:0ms!important}
+}
+
 /* ------------------------- historique des tirages ------------------------ */
 .hist-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
 .hist-card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:11px 13px}
