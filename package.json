@@ -3,13 +3,10 @@
   "version": "1.4",
   "private": true,
   "description": "Thème numérologique complet (méthode pythagoricienne) : chemin de vie, nombres du nom, cycles de vie, réalisations, défis, grille d'inclusion (PWA + APK, 100% hors ligne)",
-  "scripts": {
-    "sync": "cap sync android",
-    "open": "cap open android"
-  },
+  "scripts": { "sync": "cap sync android", "open": "cap open android" },
   "dependencies": {
-    "@capacitor/android": "^8.0.0",
-    "@capacitor/cli": "^8.0.0",
-    "@capacitor/core": "^8.0.0"
+    "@capacitor/android": "^6.2.1",
+    "@capacitor/cli": "^6.2.1",
+    "@capacitor/core": "^6.2.1"
   }
 }
